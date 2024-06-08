@@ -24,6 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.tcoded.folialib.FoliaLib;
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -54,9 +56,10 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   @NotNull
   private static final Version VERSION;
   private static PlaceholderAPIPlugin instance;
+  private static FoliaLib foliaLib;
 
   static {
-    String version = Bukkit.getServer().getBukkitVersion().split("-")[0];
+    /*String version = Bukkit.getServer().getBukkitVersion().split("-")[0];
     String suffix;
     if (version.chars()
             .filter(c -> c == '.')
@@ -66,7 +69,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     } else {
       int minor = Integer.parseInt(version.split("\\.")[2].charAt(0) + "");
       version = 'v' + version.replace('.', '_').replace("_" + minor, "") + '_' + "R" + (minor - 1);
-    }
+    }*/
 
     boolean isSpigot;
     try {
@@ -75,8 +78,17 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     } catch (final ExceptionInInitializerError | ClassNotFoundException ignored) {
       isSpigot = false;
     }
+    String minecraftVersion = Bukkit.getServer().getMinecraftVersion();
+    VERSION = new Version(minecraftVersion, isSpigot);
+  }
 
-    VERSION = new Version(version, isSpigot);
+  /**
+   * Get the static instance of the FoliaLib class
+   *
+   * @return FoliaLib instance
+   */
+  public static FoliaLib getFoliaLib() {
+    return foliaLib;
   }
 
   @NotNull
@@ -146,7 +158,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   @Override
   public void onLoad() {
     instance = this;
-
+    foliaLib = new FoliaLib(this);
     saveDefaultConfig();
   }
 

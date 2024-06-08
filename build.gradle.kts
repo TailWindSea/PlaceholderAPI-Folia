@@ -1,8 +1,10 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import io.papermc.paperweight.userdev.ReobfArtifactConfiguration
 
 plugins {
     `java-library`
     `maven-publish`
+    id("io.papermc.paperweight.userdev") version "1.7.1"
     id("com.github.hierynomus.license") version "0.16.1"
     id("com.github.johnrengelman.shadow") version "8.1.0"
 }
@@ -12,6 +14,9 @@ version = "2.11.7-DEV-${System.getProperty("BUILD_NUMBER")}"
 
 description = "An awesome placeholder provider!"
 
+
+//paperweight.reobfArtifactConfiguration = ReobfArtifactConfiguration.MOJANG_PRODUCTION
+
 repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
 
@@ -20,13 +25,15 @@ repositories {
 
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://nexuslite.gcnt.net/repos/other/")
 }
 
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.2")
+    implementation("com.tcoded:FoliaLib:0.3.1")
 
-    compileOnly("org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT")
+    paperweight.foliaDevBundle("1.20.6-R0.1-SNAPSHOT")
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
     testImplementation("org.openjdk.jmh:jmh-core:1.32")
@@ -36,10 +43,9 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
-
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 
     withJavadocJar()
     withSourcesJar()
