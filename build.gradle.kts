@@ -1,5 +1,4 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import io.papermc.paperweight.userdev.ReobfArtifactConfiguration
 
 plugins {
     `java-library`
@@ -13,9 +12,6 @@ group = "me.clip"
 version = "2.11.7-DEV-${System.getProperty("BUILD_NUMBER")}"
 
 description = "An awesome placeholder provider!"
-
-
-//paperweight.reobfArtifactConfiguration = ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
 repositories {
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
