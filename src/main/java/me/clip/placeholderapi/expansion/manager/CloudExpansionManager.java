@@ -200,6 +200,13 @@ public final class CloudExpansionManager {
             plugin.getLogger().log(Level.WARNING, "Failed to download expansion information", e);
           }
 
+<<<<<<< HEAD
+          //todo: Figure out why this was being scheduled back on the main thread
+          try {
+            for (Map.Entry<String, CloudExpansion> entry : values.entrySet()) {
+              String name = entry.getKey();
+              CloudExpansion expansion = entry.getValue();
+=======
           // loop through what's left on the main thread
           plugin
               .getServer()
@@ -211,29 +218,29 @@ public final class CloudExpansionManager {
                       for (Map.Entry<String, CloudExpansion> entry : values.entrySet()) {
                         String name = entry.getKey();
                         CloudExpansion expansion = entry.getValue();
+>>>>>>> master
 
-                        expansion.setName(name);
+              expansion.setName(name);
 
-                        Optional<PlaceholderExpansion> localOpt =
-                            plugin.getLocalExpansionManager().findExpansionByName(name);
-                        if (localOpt.isPresent()) {
-                          PlaceholderExpansion local = localOpt.get();
-                          if (local.isRegistered()) {
-                            expansion.setHasExpansion(true);
-                            expansion.setShouldUpdate(
-                                !local.getVersion().equalsIgnoreCase(expansion.getLatestVersion()));
-                          }
-                        }
+              Optional<PlaceholderExpansion> localOpt =
+                      plugin.getLocalExpansionManager().findExpansionByName(name);
+              if (localOpt.isPresent()) {
+                PlaceholderExpansion local = localOpt.get();
+                if (local.isRegistered()) {
+                  expansion.setHasExpansion(true);
+                  expansion.setShouldUpdate(
+                          !local.getVersion().equalsIgnoreCase(expansion.getLatestVersion()));
+                }
+              }
 
-                        cache.put(toIndexName(expansion), expansion);
-                      }
-                    } catch (Throwable e) {
-                      // ugly swallowing of every throwable, but we have to be defensive
-                      plugin
-                          .getLogger()
-                          .log(Level.WARNING, "Failed to download expansion information", e);
-                    }
-                  });
+              cache.put(toIndexName(expansion), expansion);
+            }
+          } catch (Throwable e) {
+            // ugly swallowing of every throwable, but we have to be defensive
+            plugin
+                    .getLogger()
+                    .log(Level.WARNING, "Failed to download expansion information", e);
+          }
         });
   }
 
