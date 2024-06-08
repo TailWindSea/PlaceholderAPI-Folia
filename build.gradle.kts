@@ -5,7 +5,7 @@ plugins {
     `maven-publish`
     id("io.papermc.paperweight.userdev") version "1.7.1"
     id("com.github.hierynomus.license") version "0.16.1"
-    id("com.github.johnrengelman.shadow") version "8.1.0"
+    id("io.github.goooler.shadow") version "8.1.7"
 }
 
 group = "me.clip"
@@ -40,8 +40,8 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 
     withJavadocJar()
     withSourcesJar()
