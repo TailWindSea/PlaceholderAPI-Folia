@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "me.clip"
-version = "2.11.4-DEV-${System.getProperty("BUILD_NUMBER")}"
+version = "2.11.7-DEV-${System.getProperty("BUILD_NUMBER")}"
 
 description = "An awesome placeholder provider!"
 
@@ -24,9 +24,13 @@ repositories {
 
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
-    implementation("net.kyori:adventure-platform-bukkit:4.3.0")
+    implementation("net.kyori:adventure-platform-bukkit:4.3.2")
 
+<<<<<<< HEAD
     compileOnlyApi("dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT") // this is temp
+=======
+    compileOnly("org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT")
+>>>>>>> master
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
     testImplementation("org.openjdk.jmh:jmh-core:1.32")
@@ -54,7 +58,7 @@ license {
     encoding = "UTF-8"
 
     ext {
-        set("year", 2021)
+        set("year", 2024)
     }
 }
 
@@ -88,6 +92,8 @@ tasks {
 
         relocate("org.bstats", "me.clip.placeholderapi.metrics")
         relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
+
+        exclude("META-INF/versions/**")
     }
 
     test {
