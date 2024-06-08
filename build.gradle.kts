@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "me.clip"
-version = "2.11.7-DEV"
+version = "2.11.7-DEV-folia"
 
 description = "An awesome placeholder provider!"
 
