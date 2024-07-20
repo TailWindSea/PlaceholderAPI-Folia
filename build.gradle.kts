@@ -26,10 +26,16 @@ repositories {
 
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
+<<<<<<< HEAD
     implementation("net.kyori:adventure-platform-bukkit:4.3.2")
     implementation("com.tcoded:FoliaLib:0.3.1")
 
     paperweight.foliaDevBundle("1.20.6-R0.1-SNAPSHOT")
+=======
+    implementation("net.kyori:adventure-platform-bukkit:4.3.3")
+
+    compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
+>>>>>>> 272e2e7904da739ddca6554160a683a88c5efcc7
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
     testImplementation("org.openjdk.jmh:jmh-core:1.32")
@@ -73,6 +79,7 @@ tasks {
 
     withType<JavaCompile> {
         options.encoding = "UTF-8"
+        options.release = 8
     }
 
     withType<Javadoc> {
