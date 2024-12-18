@@ -27,7 +27,7 @@ repositories {
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.2")
-    implementation("com.tcoded:FoliaLib:0.3.1")
+    implementation("com.tcoded:FoliaLib:0.4.2")
 
     paperweight.foliaDevBundle("1.20.6-R0.1-SNAPSHOT")
     implementation("net.kyori:adventure-platform-bukkit:4.3.3")
