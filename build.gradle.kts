@@ -3,7 +3,6 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     `java-library`
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "1.7.1"
     id("com.github.hierynomus.license") version "0.16.1"
     id("io.github.goooler.shadow") version "8.1.7"
 }
@@ -19,8 +18,7 @@ repositories {
     mavenCentral()
     mavenLocal()
 
-    maven("https://repo.codemc.org/repository/maven-public/")
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://nexuslite.gcnt.net/repos/other/")
 }
 
@@ -29,11 +27,8 @@ dependencies {
     implementation("net.kyori:adventure-platform-bukkit:4.3.2")
     implementation("com.tcoded:FoliaLib:0.4.2")
 
-    paperweight.foliaDevBundle("1.20.6-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
     implementation("net.kyori:adventure-platform-bukkit:4.3.3")
-
-    compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
-    compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
     testImplementation("org.openjdk.jmh:jmh-core:1.32")
     testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.32")
